@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+/* eslint-disable no-undef */
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+import React, { Component } from "react";
+import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
+import parking from "./Assets/location64.png";
+
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Map
+          google={this.props.google}
+          style={{ width: "100%", height: "100%" }}
+          zoom={16}
+          initialCenter={{
+            lat: 29.390945,
+            lng: 76.963501,
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          <Marker
+            key="marker_1"
+            icon={parking}
+            position={{
+              lat: 29.390945,
+              lng: 76.963501,
+            }}
+          />
+        </Map>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default GoogleApiWrapper({
+  apiKey: "AIzaSyAvNL7fuRrrRMsGhw2yKyj9o6gYudGLU80",
+})(App);
